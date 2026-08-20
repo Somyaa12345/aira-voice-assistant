@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aira - Local Personal Voice Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Navbar -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-orb"></div>
+            <h1 class="logo-title">Aira</h1>
+        </div>
+        <div class="status-badge">
+            <div class="status-dot"></div>
+            <span id="statusLabel">Ollama (Llama 3.1) • Ready</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="app-container">
+
+        <!-- Left Column: Voice Hero & Chat Feed -->
+        <main class="main-section">
+
+            <!-- Voice Visualizer Hero -->
+            <div class="visualizer-card">
+                <div class="aira-orb-large" id="airaOrb"></div>
+                <div class="voice-status-text" id="voiceStatus">Click "Start Speaking" or type below</div>
+                <div class="controls-row">
+                    <button class="btn-primary" id="micBtn">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"></path>
+                            <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"></path>
+                        </svg>
+                        <span id="micBtnText">Start Speaking</span>
+                    </button>
+                    <button class="btn-secondary" id="stopAudioBtn" style="display:none;">Stop Speech</button>
+                </div>
+            </div>
+
+            <!-- Chat & History Feed -->
+            <div class="chat-card">
+                <div class="chat-header">Conversation History & Tool Activity</div>
+                <div class="messages-container" id="messagesContainer">
+                    <div class="message-bubble assistant">
+                        Namaste! I am <strong>Aira</strong>, your local personal voice assistant. Speak to me in English, Hindi, or Hinglish!
+                    </div>
+                </div>
+                <div class="chat-input-row">
+                    <input type="text" id="chatInput" class="chat-input" placeholder="Type a message or command (e.g. 'Open YouTube', 'Set note')...">
+                    <button class="btn-primary" id="sendBtn" style="padding: 0.75rem 1.4rem;">Send</button>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Right Column: Shortcuts, Notes & Memory -->
+        <aside class="sidebar">
+
+            <!-- Quick Tool Actions -->
+            <div class="side-panel">
+                <div class="panel-title">⚡ Quick Actions</div>
+                <div class="shortcut-grid">
+                    <button class="quick-btn" onclick="sendQuickQuery('Open YouTube')">▶ Open YouTube</button>
+                    <button class="quick-btn" onclick="sendQuickQuery('Open Spotify')">🎵 Open Spotify</button>
+                    <button class="quick-btn" onclick="sendQuickQuery('What time is it?')">🕒 Current Time</button>
+                    <button class="quick-btn" onclick="sendQuickQuery('What is 25 * 14?')">🧮 Calculator</button>
+                </div>
+            </div>
+
+            <!-- Notes & Reminders -->
+            <div class="side-panel">
+                <div class="panel-title">📝 Notes & Reminders</div>
+                <div class="list-container" id="notesContainer">
+                    <div class="item-badge">No notes saved yet</div>
+                </div>
+            </div>
+
+            <!-- Long-Term Memory -->
+            <div class="side-panel">
+                <div class="panel-title">🧠 Stored Memory</div>
+                <div class="list-container" id="memoryContainer">
+                    <div class="item-badge">Memory active & learning</div>
+                </div>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+fastapi>=0.100.0
+uvicorn>=0.22.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+sqlalchemy>=2.0.0
+httpx>=0.24.0
+faster-whisper>=0.10.0
+pyttsx3>=2.90
+comtypes>=1.2.0; sys_platform == 'win32'
+pypiwin32>=223; sys_platform == 'win32'
+python-multipart>=0.0.6
+pytest>=7.0.0

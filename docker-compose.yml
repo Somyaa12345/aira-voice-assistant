@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  aira-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aira_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - HOST=0.0.0.0
+      - OLLAMA_BASE_URL=http://ollama-service:11434
+      - OLLAMA_MODEL=llama3.1:latest
+      - WHISPER_MODEL_SIZE=base
+      - TTS_PROVIDER=pyttsx3
+      - DATABASE_URL=sqlite:///./aira.db
+      - LIVEKIT_URL=ws://livekit-server:7880
+      - LIVEKIT_API_KEY=devkey
+      - LIVEKIT_API_SECRET=secret
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+    depends_on:
+      - ollama-service
+      - livekit-server
+    restart: unless-stopped
+
+  livekit-server:
+    image: livekit/livekit-server:latest
+    container_name: aira_livekit
+    command: --dev --bind 0.0.0.0
+    ports:
+      - "7880:7880"
+      - "7881:7881"
+      - "7882:7882/udp"
+
+  ollama-service:
+    image: ollama/ollama:latest
+    container_name: aira_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_storage:/root/.ollama
+
+volumes:
+  ollama_storage:

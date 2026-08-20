@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Database & Storage
+*.db
+*.sqlite
+*.sqlite3
+aira.db
+
+# Audio Files & Temporary Output
+*.wav
+*.mp3
+*.webm
+*.ogg
+test_aira_output.wav
+scratch/
+
+# Environment & Credentials
+.env
+.env.local
+.env.development
+.env.production
+!.env.example
+
+# IDE & System Files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*.log
+
+# Models & Heavy Assets (downloaded at runtime)
+models/*.onnx
+models/*.json
